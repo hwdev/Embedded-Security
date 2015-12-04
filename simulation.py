@@ -27,7 +27,7 @@ def Sbox(D,K,byte):
     for k in K:
         sublist = []
         for d in D:
-            sublist.append(S[d^k])#column           
+            sublist.append(S[d[byte-1]^k])#column
         mylist.append(sublist)
         
     return mylist
@@ -82,8 +82,8 @@ def plot(R):
 def main():
     key = [197]         #given key
     keys = range(256)   #guessed key
-    D = range(256)      #input text
-    
+    D = np.load(r'avr_aes128_10000\traces\2013.11.14-12.33.38_textin.npy')
+
     Sc = HW(Sbox(D, key, 16))   #Simulation
     H = HW(Sbox(D, keys, 16))   #Hypothesis
     R=correlation(H, Sc)
@@ -94,4 +94,5 @@ def main():
  
 if __name__ == "__main__":
     main()
+
 
