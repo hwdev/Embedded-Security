@@ -85,7 +85,7 @@ def main(args):
     numPoints = np.shape(traces)[1]
 
     bestGuess = [0]*16
-    for byteNum in range(0, 1):
+    for byteNum in range(0, 16):
         bestGuess[byteNum] = guessOneKeyByte(byteNum)
         print "Guessed key:", "".join(["%02X " % (b) for b in bestGuess])
         
